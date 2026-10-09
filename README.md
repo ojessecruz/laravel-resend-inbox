@@ -20,8 +20,8 @@ PHP 8.3+, Laravel 11–13, Livewire 3 or 4, Tailwind CSS in the host app, and a 
 
 ```bash
 composer require ojessecruz/laravel-resend-inbox
-php artisan vendor:publish --tag="laravel-resend-inbox-config"
-php artisan vendor:publish --tag="laravel-resend-inbox-migrations"
+php artisan vendor:publish --tag="resend-inbox-config"
+php artisan vendor:publish --tag="resend-inbox-migrations"
 php artisan migrate
 ```
 
@@ -112,13 +112,13 @@ Each piece of the screens is an anonymous Blade component under the `inbox::` na
 | `email-form` | From / To / Subject / Message fields. |
 | `delivery-status` | The delivery status badge. |
 
-To copy every view at once: `php artisan vendor:publish --tag="laravel-resend-inbox-views"`. Published views stop receiving package updates.
+To copy every view at once: `php artisan vendor:publish --tag="resend-inbox-views"`. Published views stop receiving package updates.
 
 The props of these components and the public properties and methods of the Livewire components (`Inbox`, `ShowThread`, `Compose`) are the package's public API: breaking changes to them only happen in major versions.
 
 ## Translations
 
-English and Brazilian Portuguese are included. Publish them with `php artisan vendor:publish --tag="laravel-resend-inbox-translations"`.
+English and Brazilian Portuguese are included. Publish them with `php artisan vendor:publish --tag="resend-inbox-translations"`.
 
 ## Testing
 

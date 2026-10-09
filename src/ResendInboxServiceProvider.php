@@ -24,9 +24,8 @@ final class ResendInboxServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('laravel-resend-inbox')
+            ->name('resend-inbox')
             ->hasConfigFile('inbox')
-            ->hasViews('inbox')
             ->hasRoute('web')
             ->hasMigrations([
                 'create_inbox_threads_table',
@@ -49,8 +48,13 @@ final class ResendInboxServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        // Views and translations are registered by hand so they live under the
+        // short "inbox::" namespace while every publish tag stays "resend-inbox-*".
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'inbox');
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'inbox');
-        $this->publishes([__DIR__.'/../resources/lang' => lang_path('vendor/inbox')], 'laravel-resend-inbox-translations');
+
+        $this->publishes([__DIR__.'/../resources/views' => resource_path('views/vendor/inbox')], 'resend-inbox-views');
+        $this->publishes([__DIR__.'/../resources/lang' => lang_path('vendor/inbox')], 'resend-inbox-translations');
 
         Livewire::component('inbox.index', Inbox::class);
         Livewire::component('inbox.show-thread', ShowThread::class);
