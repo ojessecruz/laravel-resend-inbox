@@ -1,0 +1,18 @@
+/*
+ * Tailwind v4 source registration for Laravel Resend Inbox.
+ *
+ * The package ships Blade views full of Tailwind utility classes but does not
+ * compile its own CSS: the host app does. Tailwind v4 only generates classes
+ * found in paths registered with `@source`, and a Composer package under
+ * `vendor/` is never scanned automatically. Import this file from your app's
+ * main CSS entrypoint:
+ *
+ *     @import '../../vendor/ojessecruz/laravel-resend-inbox/resources/css/inbox.css';
+ *
+ * On Tailwind v3, add the package views to `content` in tailwind.config.js
+ * instead (the exact glob is in the README).
+ *
+ * Views you override under resources/views/vendor/inbox are already scanned
+ * by your own content paths.
+ */
+@source "../views";

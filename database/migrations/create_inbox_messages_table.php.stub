@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('inbox_messages', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('inbox_thread_id')->constrained('inbox_threads')->cascadeOnDelete();
+            $table->string('direction');
+            $table->string('resend_id')->nullable()->unique();
+            $table->string('message_id')->nullable()->index();
+            $table->string('in_reply_to')->nullable();
+            $table->text('references')->nullable();
+            $table->string('mailbox')->index();
+            $table->string('from_address')->index();
+            $table->string('from_name')->nullable();
+            $table->json('to');
+            $table->json('cc')->nullable();
+            $table->json('reply_to')->nullable();
+            $table->text('subject');
+            $table->longText('html')->nullable();
+            $table->longText('text')->nullable();
+            $table->json('headers')->nullable();
+            $table->json('attachments')->nullable();
+            $table->string('delivery_status')->nullable();
+            $table->text('bounce_message')->nullable();
+            $table->unsignedBigInteger('sent_by')->nullable()->index();
+            $table->timestamp('sent_at')->index();
+            $table->timestamps();
+        });
+    }
+};

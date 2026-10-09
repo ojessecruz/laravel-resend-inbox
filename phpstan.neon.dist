@@ -1,0 +1,19 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - config
+        - database
+    tmpDir: build/phpstan
+    ignoreErrors:
+        -
+            # Package views live under the "inbox::" namespace the service provider registers at boot.
+            message: '#expects view-string\|null, string given\.#'
+            paths:
+                - src/Livewire/Inbox.php
+                - src/Livewire/ShowThread.php
+                - src/Livewire/Compose.php
+        -
+            # Package config is merged into the host's config at boot, so env() here is resolved (and cached) by the host.
+            identifier: larastan.noEnvCallsOutsideOfConfig
+            path: config/inbox.php

@@ -1,0 +1,80 @@
+{
+    "name": "ojessecruz/laravel-resend-inbox",
+    "description": "A shared inbox for your Laravel admin on top of Resend inbound email: conversations, replies, delivery status and Livewire screens.",
+    "keywords": [
+        "jessecruz",
+        "laravel",
+        "livewire",
+        "resend",
+        "inbox",
+        "email",
+        "inbound"
+    ],
+    "homepage": "https://github.com/ojessecruz/laravel-resend-inbox",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jessecruz",
+            "email": "cruzkta@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/contracts": "^11.0||^12.0||^13.0",
+        "livewire/livewire": "^3.6||^4.0",
+        "ojessecruz/resend-inbox": "dev-main",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.14",
+        "nunomaduro/collision": "^8.8",
+        "orchestra/testbench": "^11.0.0||^10.0.0||^9.0.0",
+        "pestphp/pest": "^3.0||^4.0",
+        "pestphp/pest-plugin-arch": "^3.0||^4.0",
+        "pestphp/pest-plugin-laravel": "^3.0||^4.0",
+        "pestphp/pest-plugin-livewire": "^3.0||^4.0",
+        "phpstan/extension-installer": "^1.4"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ojessecruz/resend-inbox"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jessecruz\\LaravelResendInbox\\": "src/",
+            "Jessecruz\\LaravelResendInbox\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jessecruz\\LaravelResendInbox\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jessecruz\\LaravelResendInbox\\ResendInboxServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

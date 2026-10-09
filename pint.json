@@ -1,0 +1,8 @@
+{
+    "preset": "laravel",
+    "notName": ["TestCase.php"],
+    "rules": {
+        "declare_strict_types": true,
+        "final_class": true
+    }
+}
