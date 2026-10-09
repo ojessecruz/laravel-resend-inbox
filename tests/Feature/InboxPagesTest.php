@@ -121,6 +121,21 @@ test('conversations can be archived and restored in bulk', function () {
     expect(InboxThread::query()->whereNotNull('archived_at')->count())->toBe(0);
 });
 
+test('conversations can be marked as read in bulk', function () {
+    $threads = InboxThread::factory()->count(3)->create(['read_at' => null]);
+
+    Livewire::actingAs(admin())->test(Inbox::class)
+        ->set('selected', [(string) $threads[0]->id, (string) $threads[1]->id])
+        ->assertSee('Mark as read')
+        ->call('markSelectedRead')
+        ->assertSet('selected', [])
+        ->assertSee('2 conversations marked as read.');
+
+    expect($threads[0]->refresh()->isUnread())->toBeFalse()
+        ->and($threads[1]->refresh()->isUnread())->toBeFalse()
+        ->and($threads[2]->refresh()->isUnread())->toBeTrue();
+});
+
 test('changing a filter clears the selection', function () {
     $thread = InboxThread::factory()->create();
 

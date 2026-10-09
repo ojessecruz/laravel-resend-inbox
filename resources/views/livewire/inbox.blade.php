@@ -24,6 +24,7 @@
 
             @if ($selected !== [])
                 <span class="text-sm text-zinc-600 dark:text-zinc-400">{{ trans_choice('inbox::inbox.list.selected', count($selected), ['count' => count($selected)]) }}</span>
+                <x-inbox::button size="sm" wire:click="markSelectedRead">{{ __('inbox::inbox.actions.mark_read') }}</x-inbox::button>
                 @if ($status === 'archived')
                     <x-inbox::button size="sm" wire:click="unarchiveSelected">{{ __('inbox::inbox.actions.unarchive') }}</x-inbox::button>
                 @else

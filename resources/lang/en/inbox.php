@@ -31,6 +31,7 @@ return [
         'send_reply' => 'Send reply',
         'archive' => 'Archive',
         'unarchive' => 'Move to inbox',
+        'mark_read' => 'Mark as read',
         'mark_unread' => 'Mark as unread',
         'load_images' => 'Load images',
         'select' => 'Select conversation',
@@ -40,6 +41,7 @@ return [
     'notices' => [
         'archived' => ':count conversation archived.|:count conversations archived.',
         'unarchived' => ':count conversation moved to the inbox.|:count conversations moved to the inbox.',
+        'marked_read' => ':count conversation marked as read.|:count conversations marked as read.',
         'reply_sent' => 'Reply sent.',
     ],
     'message' => [
