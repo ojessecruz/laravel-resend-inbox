@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-resend-inbox` will be documented in this file.
 
+## 0.1.5 - 2026-10-09
+
+- The email iframe shrinks to short emails: it measured the document, which never reports less than the iframe's own height (150px).
+
 ## 0.1.4 - 2026-10-09
 
 - "Mark as unread" for the selected conversations in the list.

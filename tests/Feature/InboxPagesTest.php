@@ -300,12 +300,13 @@ test('an app override of the card restyles the list and the reply form', functio
         ->assertSeeHtml('class="app-card"');
 });
 
-test('the email body takes the colors of its iframe', function () {
+test('the email body takes the colors of its iframe and the iframe the height of the email', function () {
     $message = InboxMessage::factory()->create(['html' => '<p>Olá</p>']);
 
     Livewire::actingAs(admin())->test(ShowThread::class, ['thread' => $message->thread])
         ->assertSeeHtml('bg-white text-zinc-900')
-        ->assertSeeHtml('body.style.background = getComputedStyle($el).backgroundColor');
+        ->assertSeeHtml('body.style.background = getComputedStyle($el).backgroundColor')
+        ->assertSeeHtml('Math.max(body.scrollHeight, $el.contentDocument.documentElement.offsetHeight)');
 });
 
 test('the screens use plain links, so scripts that run on page load keep working', function () {

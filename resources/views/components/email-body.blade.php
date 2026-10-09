@@ -31,7 +31,7 @@
         if (body) {
             body.style.color = getComputedStyle($el).color;
             body.style.background = getComputedStyle($el).backgroundColor;
+            $el.style.height = Math.max(body.scrollHeight, $el.contentDocument.documentElement.offsetHeight) + 'px';
         }
-        $el.style.height = ($el.contentDocument?.documentElement.scrollHeight ?? 400) + 'px';
     "
 ></iframe>
