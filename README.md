@@ -127,6 +127,10 @@ composer test
 composer analyse
 ```
 
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or a pull request. Security problems are reported privately: see [SECURITY.md](SECURITY.md).
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
