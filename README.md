@@ -105,10 +105,11 @@ Each piece of the screens is an anonymous Blade component under the `inbox::` na
 | Component | What it is |
 |---|---|
 | `button`, `input`, `textarea`, `select`, `checkbox`, `badge`, `field`, `notice`, `heading` | Form and UI primitives. Override these to match your design system. |
+| `card` | The panel around the conversation list and the reply form, with an optional `header` slot (the list's select-all bar). |
 | `tabs` | The mailbox tabs with unread counters. |
 | `thread-row` | One conversation in the list. |
 | `message` | One email in a conversation. |
-| `email-body` | The sandboxed iframe rendering an email's HTML. |
+| `email-body` | The sandboxed iframe rendering an email's HTML. The email takes the iframe's text and background colors (`bg-white text-zinc-900` by default): pass other classes to restyle it. Most HTML emails are designed for a light background, so keep it light even in dark mode. |
 | `email-form` | From / To / Subject / Message fields. |
 | `delivery-status` | The delivery status badge. |
 

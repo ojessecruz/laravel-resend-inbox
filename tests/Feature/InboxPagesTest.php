@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 use Jessecruz\LaravelResendInbox\Livewire\Compose;
 use Jessecruz\LaravelResendInbox\Livewire\Inbox;
 use Jessecruz\LaravelResendInbox\Livewire\ShowThread;
@@ -255,4 +256,24 @@ test('screens are translated', function () {
     InboxMessage::factory()->create(['mailbox' => 'jesse@elenya.app'])->thread->update(['mailbox' => 'jesse@elenya.app']);
 
     Livewire::actingAs(admin())->test(Inbox::class)->assertSee(['Caixa de entrada', 'Outros', 'Novo e-mail']);
+});
+
+test('an app override of the card restyles the list and the reply form', function () {
+    View::prependNamespace('inbox', __DIR__.'/../Fixtures/views');
+    $message = InboxMessage::factory()->create();
+
+    Livewire::actingAs(admin())->test(Inbox::class)
+        ->assertSeeHtml(['class="app-card"', 'class="app-card-header"'])
+        ->assertDontSeeHtml('border-zinc-200 bg-zinc-50');
+
+    Livewire::actingAs(admin())->test(ShowThread::class, ['thread' => $message->thread])
+        ->assertSeeHtml('class="app-card"');
+});
+
+test('the email body takes the colors of its iframe', function () {
+    $message = InboxMessage::factory()->create(['html' => '<p>Olá</p>']);
+
+    Livewire::actingAs(admin())->test(ShowThread::class, ['thread' => $message->thread])
+        ->assertSeeHtml('bg-white text-zinc-900')
+        ->assertSeeHtml('body.style.background = getComputedStyle($el).backgroundColor');
 });

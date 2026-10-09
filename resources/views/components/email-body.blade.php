@@ -2,7 +2,9 @@
     An email's HTML in a sandboxed iframe: no scripts, links open in a new
     tab, and a CSP blocks remote resources (tracking pixels) until images
     are allowed. allow-same-origin without allow-scripts only lets the
-    parent measure the height. Props: html, allowImages.
+    parent measure the height and paint the email with the iframe's own
+    text and background colors, so a class on the component restyles it.
+    Props: html, allowImages.
 --}}
 @props(['html', 'allowImages' => false])
 
@@ -22,7 +24,14 @@
     sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
     srcdoc="{{ $document }}"
     title="{{ __('inbox::inbox.message.body') }}"
-    {{ $attributes->merge(['class' => 'block min-h-24 w-full rounded-lg bg-white']) }}
+    {{ $attributes->merge(['class' => 'block min-h-24 w-full rounded-lg bg-white text-zinc-900']) }}
     x-data
-    x-on:load="$el.style.height = ($el.contentDocument?.documentElement.scrollHeight ?? 400) + 'px'"
+    x-on:load="
+        const body = $el.contentDocument?.body;
+        if (body) {
+            body.style.color = getComputedStyle($el).color;
+            body.style.background = getComputedStyle($el).backgroundColor;
+        }
+        $el.style.height = ($el.contentDocument?.documentElement.scrollHeight ?? 400) + 'px';
+    "
 ></iframe>

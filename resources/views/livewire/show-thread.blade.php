@@ -25,15 +25,17 @@
         @endforeach
     </div>
 
-    <form wire:submit="send" class="space-y-4 rounded-2xl border border-zinc-200 p-5 dark:border-zinc-800">
-        <h2 class="text-base font-semibold text-zinc-900 dark:text-zinc-100">{{ __('inbox::inbox.titles.reply') }}</h2>
+    <x-inbox::card>
+        <form wire:submit="send" class="space-y-4 p-5">
+            <h2 class="text-base font-semibold text-zinc-900 dark:text-zinc-100">{{ __('inbox::inbox.titles.reply') }}</h2>
 
-        <x-inbox::notice :message="$notice" />
+            <x-inbox::notice :message="$notice" />
 
-        <x-inbox::email-form form="reply" :senders="$this->senders" />
+            <x-inbox::email-form form="reply" :senders="$this->senders" />
 
-        <div class="flex justify-end">
-            <x-inbox::button type="submit" variant="primary" wire:loading.attr="disabled">{{ __('inbox::inbox.actions.send_reply') }}</x-inbox::button>
-        </div>
-    </form>
+            <div class="flex justify-end">
+                <x-inbox::button type="submit" variant="primary" wire:loading.attr="disabled">{{ __('inbox::inbox.actions.send_reply') }}</x-inbox::button>
+            </div>
+        </form>
+    </x-inbox::card>
 </div>

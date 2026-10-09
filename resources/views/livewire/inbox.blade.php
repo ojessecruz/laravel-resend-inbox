@@ -18,8 +18,8 @@
         ]" />
     </div>
 
-    <div class="overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
-        <div class="flex items-center gap-3 border-b border-zinc-200 bg-zinc-50 px-4 py-2 dark:border-zinc-800 dark:bg-zinc-900">
+    <x-inbox::card>
+        <x-slot:header>
             <x-inbox::checkbox wire:model.live="selectPage" :aria-label="__('inbox::inbox.actions.select_page')" />
 
             @if ($selected !== [])
@@ -31,7 +31,7 @@
                 @endif
                 <x-inbox::button size="sm" wire:click="clearSelection">{{ __('inbox::inbox.actions.clear_selection') }}</x-inbox::button>
             @endif
-        </div>
+        </x-slot:header>
 
         @if ($this->threads->isEmpty())
             <p class="px-4 py-10 text-center text-sm text-zinc-500">{{ __('inbox::inbox.list.empty') }}</p>
@@ -42,7 +42,7 @@
                 @endforeach
             </ul>
         @endif
-    </div>
+    </x-inbox::card>
 
     {{ $this->threads->links() }}
 </div>
