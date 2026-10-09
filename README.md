@@ -14,7 +14,7 @@ The framework-agnostic logic (threading, reply headers, webhook verification, au
 
 ## Requirements
 
-PHP 8.3+, Laravel 11–13, Livewire 3 or 4, Tailwind CSS in the host app, and a Resend domain with receiving enabled.
+PHP 8.3+, Laravel 12 or 13, Livewire 3 or 4, Tailwind CSS in the host app, and a Resend domain with receiving enabled.
 
 ## Installation
 
