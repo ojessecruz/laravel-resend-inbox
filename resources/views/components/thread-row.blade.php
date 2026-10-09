@@ -6,7 +6,7 @@
 <li {{ $attributes->merge(['class' => 'flex items-start gap-3 px-4 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-900']) }}>
     <x-inbox::checkbox wire:model.live="selected" value="{{ $thread->id }}" class="mt-1" :aria-label="__('inbox::inbox.actions.select')" />
 
-    <a href="{{ route('inbox.threads.show', $thread) }}" wire:navigate class="min-w-0 flex-1">
+    <a href="{{ route('inbox.threads.show', $thread) }}" class="min-w-0 flex-1">
         <div class="flex items-baseline justify-between gap-3">
             <p @class(['truncate text-sm', 'font-semibold text-zinc-900 dark:text-zinc-100' => $thread->isUnread(), 'text-zinc-700 dark:text-zinc-300' => ! $thread->isUnread()])>
                 {{ $latest?->isInbound() ? $latest->fromLabel() : __('inbox::inbox.list.to', ['address' => implode(', ', $latest->to ?? [])]) }}

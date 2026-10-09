@@ -102,14 +102,14 @@ final class ShowThread extends Component
     {
         $this->thread->update(['read_at' => null]);
 
-        $this->redirectRoute('inbox.index', navigate: true);
+        $this->redirectRoute('inbox.index');
     }
 
     public function archive(): void
     {
         $this->thread->update(['archived_at' => now()]);
 
-        $this->redirectRoute('inbox.index', navigate: true);
+        $this->redirectRoute('inbox.index');
     }
 
     public function unarchive(): void

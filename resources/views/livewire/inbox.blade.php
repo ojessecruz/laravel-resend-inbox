@@ -1,7 +1,7 @@
 <div class="space-y-6">
     <x-inbox::heading :title="__('inbox::inbox.titles.inbox')">
         <x-slot:actions>
-            <x-inbox::button variant="primary" :href="route('inbox.compose')" wire:navigate>{{ __('inbox::inbox.actions.compose') }}</x-inbox::button>
+            <x-inbox::button variant="primary" :href="route('inbox.compose')">{{ __('inbox::inbox.actions.compose') }}</x-inbox::button>
         </x-slot:actions>
     </x-inbox::heading>
 

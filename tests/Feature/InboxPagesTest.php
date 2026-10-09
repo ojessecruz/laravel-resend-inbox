@@ -277,3 +277,11 @@ test('the email body takes the colors of its iframe', function () {
         ->assertSeeHtml('bg-white text-zinc-900')
         ->assertSeeHtml('body.style.background = getComputedStyle($el).backgroundColor');
 });
+
+test('the screens use plain links, so scripts that run on page load keep working', function () {
+    $message = InboxMessage::factory()->create();
+
+    $this->actingAs(admin())->get(route('inbox.index'))->assertSuccessful()->assertDontSee('wire:navigate', escape: false);
+    $this->actingAs(admin())->get(route('inbox.threads.show', $message->thread))->assertSuccessful()->assertDontSee('wire:navigate', escape: false);
+    $this->actingAs(admin())->get(route('inbox.compose'))->assertSuccessful()->assertDontSee('wire:navigate', escape: false);
+});

@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-resend-inbox` will be documented in this file.
 
+## 0.1.2 - 2026-10-09
+
+- Links and redirects between the screens are plain page loads instead of `wire:navigate`. The SPA-style swap replaced the `<html>` attributes, so an app that sets its dark mode class (or runs other scripts) only on page load lost it when moving between screens.
+
 ## 0.1.1 - 2026-10-09
 
 - New `card` component for the panel around the conversation list and the reply form, which were fixed inside the Livewire views: an app can now restyle them without overriding a whole screen.

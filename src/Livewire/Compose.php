@@ -37,7 +37,7 @@ final class Compose extends Component
         $message = $this->form->send($action);
 
         if ($message !== null) {
-            $this->redirectRoute('inbox.threads.show', ['thread' => $message->inbox_thread_id], navigate: true);
+            $this->redirectRoute('inbox.threads.show', ['thread' => $message->inbox_thread_id]);
         }
     }
 

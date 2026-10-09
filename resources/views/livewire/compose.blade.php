@@ -1,6 +1,6 @@
 <div class="max-w-3xl space-y-6">
     <div class="space-y-2">
-        <a href="{{ route('inbox.index') }}" wire:navigate class="text-sm text-zinc-600 hover:underline dark:text-zinc-400">&larr; {{ __('inbox::inbox.titles.inbox') }}</a>
+        <a href="{{ route('inbox.index') }}" class="text-sm text-zinc-600 hover:underline dark:text-zinc-400">&larr; {{ __('inbox::inbox.titles.inbox') }}</a>
         <x-inbox::heading :title="__('inbox::inbox.titles.compose')" />
     </div>
 
