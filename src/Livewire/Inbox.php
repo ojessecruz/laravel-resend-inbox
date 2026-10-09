@@ -99,6 +99,13 @@ final class Inbox extends Component
         $this->notice = $count > 0 ? trans_choice('inbox::inbox.notices.marked_read', $count, ['count' => $count]) : null;
     }
 
+    public function markSelectedUnread(): void
+    {
+        $count = $this->applyToSelected(['read_at' => null]);
+
+        $this->notice = $count > 0 ? trans_choice('inbox::inbox.notices.marked_unread', $count, ['count' => $count]) : null;
+    }
+
     public function clearSelection(): void
     {
         $this->selected = [];

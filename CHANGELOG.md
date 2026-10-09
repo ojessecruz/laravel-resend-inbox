@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-resend-inbox` will be documented in this file.
 
+## 0.1.4 - 2026-10-09
+
+- "Mark as unread" for the selected conversations in the list.
+
 ## 0.1.3 - 2026-10-09
 
 - "Mark as read" for the selected conversations in the list.

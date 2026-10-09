@@ -136,6 +136,21 @@ test('conversations can be marked as read in bulk', function () {
         ->and($threads[2]->refresh()->isUnread())->toBeTrue();
 });
 
+test('conversations can be marked as unread in bulk', function () {
+    $threads = InboxThread::factory()->count(3)->create(['read_at' => now()]);
+
+    Livewire::actingAs(admin())->test(Inbox::class)
+        ->set('selected', [(string) $threads[0]->id, (string) $threads[1]->id])
+        ->assertSee('Mark as unread')
+        ->call('markSelectedUnread')
+        ->assertSet('selected', [])
+        ->assertSee('2 conversations marked as unread.');
+
+    expect($threads[0]->refresh()->isUnread())->toBeTrue()
+        ->and($threads[1]->refresh()->isUnread())->toBeTrue()
+        ->and($threads[2]->refresh()->isUnread())->toBeFalse();
+});
+
 test('changing a filter clears the selection', function () {
     $thread = InboxThread::factory()->create();
 
